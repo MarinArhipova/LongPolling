@@ -24,8 +24,8 @@ public class MessageServiceImpl implements MessageService {
     MessageMapper messageMapper;
 
     @Override
-    public List<Message> getAll() {
-        return messageRepository.findAll();
+    public List<MessageDto> getAll() {
+        return messageMapper.convertModelsToDtos(messageRepository.findAll());
     }
 
     @Override

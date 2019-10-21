@@ -22,10 +22,6 @@ import ru.itis.chat.security.providers.TokenAuthenticationProvider;
 @EnableWebSecurity // включаем безопасность
 @ComponentScan("ru.itis.chat") // говорим, чтобы искал все компоненты в наших пакетах
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-//
-//    @Qualifier("customUserDetailsService")
-//    @Autowired
-//    private UserDetailsService userDetailsService;
 
     // подключем провайдер, который мы написали
     @Autowired
@@ -43,17 +39,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     // конфигурируем AuthenticationManager
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
         // прикручиваем наш провайдер
         auth.authenticationProvider(provider);
     }
-
-//    @Bean
-//    public PersistentTokenRepository tokenRepository() {
-//        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
-//        tokenRepository.setDataSource(dataSource);
-//        return tokenRepository;
-//    }
 
     // конфигурирем саму безопасность
     @Override
@@ -66,16 +54,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.addFilterBefore(new TokenAuthenticationFilter(), BasicAuthenticationFilter.class);
         // говорим, что разрешаем Swagger
         http.authorizeRequests().antMatchers("/swagger-ui.html#/**").permitAll();
-//        .antMatchers("/signUp/**").permitAll()
-//                .antMatchers("/login").permitAll()
-//                .antMatchers("/chat").authenticated()
-//                .antMatchers("/css/**").permitAll()
-//                .anyRequest().authenticated()
-//        .and()
-//                .formLogin()
-//                .loginPage("/login")
-//                .failureUrl("/login?error")
-//                .permitAll()
-//                .defaultSuccessUrl("/chat");
+
     }
 }

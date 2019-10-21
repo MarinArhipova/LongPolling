@@ -1,5 +1,6 @@
 package ru.itis.chat.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,5 +23,6 @@ public class Message {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable=false)
+    @JsonIgnore
     private User userId;
 }

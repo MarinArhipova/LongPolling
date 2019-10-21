@@ -6,7 +6,7 @@ import ru.itis.chat.model.Message;
 import java.util.List;
 
 public interface MessageService {
-    List<Message> getAll();
+    List<MessageDto> getAll();
 
     Message add(MessageDto form);
 

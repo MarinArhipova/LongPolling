@@ -6,8 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.chat.dto.MessageDto;
-import ru.itis.chat.model.Message;
 import ru.itis.chat.servies.MessageService;
+
 import java.util.List;
 
 @RestController
@@ -19,7 +19,7 @@ public class MessagesController {
 
     @GetMapping("/messages")
     @PreAuthorize("isAuthenticated()")
-    public ResponseEntity<List<Message>> receiveMessage(@RequestHeader("AUTH") String auth) throws InterruptedException {
+    public ResponseEntity<List<MessageDto>> receiveMessage(@RequestHeader("AUTH") String auth) throws InterruptedException {
         if (messageDto.getText().isEmpty()) {
             messageDto.wait();
         }
